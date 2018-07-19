@@ -21,6 +21,10 @@ app.engine('handlebars', exphbs({defaultLayout: 'main'}));
 app.set('view engine', 'handlebars');
 
 //ROUTES GO HERE
+app.post('/handletext',function(req,res){
+  console.log(req.body);
+  res.end();
+})
 
 //add a route that will respond to post requests sent by Twilio via
 //webhooks
