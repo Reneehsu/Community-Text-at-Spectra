@@ -25,8 +25,8 @@ app.set('view engine', 'handlebars');
 app.post('/handletext',function(req,res){
   console.log(req.body);
   client.messages.create({
-    to: "SENDER_NUMBER",
-    from: "MY_TWILIO_NUMBER",
+    to: req.body.From,
+    from: '+14245238634',
     body: "Everything happens for a reason",
   })
   res.end();
