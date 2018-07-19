@@ -3,6 +3,7 @@ var express = require('express')
 var mongoose = require('mongoose')
 var bodyParser = require('body-parser')
 var exphbs = require('express-handlebars');
+var client = require('twilio')(process.env.TWILIO_SID, process.env.TWILIO_AUTH_TOKEN)
 
 //setup mongoose connection
 mongoose.connection.on('error', function() {
@@ -23,6 +24,11 @@ app.set('view engine', 'handlebars');
 //ROUTES GO HERE
 app.post('/handletext',function(req,res){
   console.log(req.body);
+  client.messages.create({
+    to: "SENDER_NUMBER",
+    from: "MY_TWILIO_NUMBER",
+    body: "Everything happens for a reason",
+  })
   res.end();
 })
 
