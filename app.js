@@ -24,10 +24,16 @@ app.set('view engine', 'handlebars');
 //ROUTES GO HERE
 app.post('/handletext',function(req,res){
   console.log(req.body);
+  var content;
+  if (req.body.Body === "Nihar"){
+    content = "Over the horizons";
+  } else{
+    "I don't understand";
+  }
   client.messages.create({
     to: req.body.From,
     from: '+14245238634',
-    body: "Everything happens for a reason",
+    body: content,
   })
   res.end();
 })
