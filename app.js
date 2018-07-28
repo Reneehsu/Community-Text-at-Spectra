@@ -27,6 +27,17 @@ app.use(bodyParser.urlencoded({extended:true}))
 app.engine('handlebars', exphbs({defaultLayout: 'main'}));
 app.set('view engine', 'handlebars');
 
+var communityArr = ["Gratitude","Health/Fitness","Education","Empowerment"];
+for (var i=0; i<communityArr; i++){
+  var newCommunity = new Community({
+    name: communityArr[i],
+    number: i+1
+  });
+  newCommunity.save(function(err){
+    if (err) console.log('Error saving community');
+  })
+}
+
 //ROUTES GO HERE
 app.post('/handletext',function(req,res){
   res.writeHead(200,{'Content-Type': 'text/xml'});
@@ -37,7 +48,15 @@ app.post('/handletext',function(req,res){
       if (req.body.Body.substr(0, 4) === 'JOIN'){
         var comm = req.body.Body.substr(4).split(' ');
         theUser.community = theUser.community.concat(comm);
-        content = "You just joined communities ... " ; 
+        content = "You just joined communities " ;
+        for (var i = 0; i < comm.length; i++) {
+          Community.findOne({number: comm[i]}, function(err, theCommunity) {
+            theCommunity.users.concat(theUser);
+            content += comm[i].name;
+          });
+          content += " ";
+        }
+
         client.messages.create({
           to: req.body.From,
           from: '+14245238634',
