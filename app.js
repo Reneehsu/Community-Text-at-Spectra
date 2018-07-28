@@ -50,7 +50,9 @@ app.post('/handletext',function(req,res){
         }
       });
     }
-  })
+  });
+
+  console.log("after find one");
 
   //initial text to our app
   // if (req.body.Body === "Hello"){
@@ -75,7 +77,8 @@ app.post('/handletext',function(req,res){
     to: req.body.From,
     from: '+14245238634',
     body: content,
-  })
+  });
+  console.log('after create');
   res.end();
 })
 
