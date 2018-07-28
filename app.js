@@ -46,7 +46,8 @@ app.post('/handletext',function(req,res){
   User.findOne({phoneNumber:req.body.From}, function(err, theUser){
     if (theUser){
       if (req.body.Body.substr(0, 4) === 'JOIN'){
-        var comm = req.body.Body.substr(4).split(' ');
+        var comm = req.body.Body.split(' ').shift();
+        console.log(comm);
         theUser.community = theUser.community.concat(comm);
         content = "You just joined communities " ;
         for (var i = 0; i < comm.length; i++) {
