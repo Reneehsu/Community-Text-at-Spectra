@@ -40,17 +40,17 @@ app.post('/handletext',function(req,res){
   }
 
   //create a User with their phone number in the database
-  var newUser = new User({
-    phoneNumber: req.body.From
-  })
-
-  console.log("before save");
-
-  newUser.save(function(err) {
-    if (err) {
-      console.log("error saving user");
-    }
-  })
+  // var newUser = new User({
+  //   phoneNumber: req.body.From
+  // })
+  // 
+  // console.log("before save");
+  //
+  // newUser.save(function(err) {
+  //   if (err) {
+  //     console.log("error saving user");
+  //   }
+  // })
 
   console.log("after save");
 
