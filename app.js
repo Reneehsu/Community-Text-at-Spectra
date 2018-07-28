@@ -26,12 +26,14 @@ app.set('view engine', 'handlebars');
 app.post('/handletext',function(req,res){
   console.log(req.body);
   var content;
+
   if (req.body.Body === "Nihar"){
     console.log("testing");
     content = "Over the horizons";
   } else{
-    "I don't understand";
+    content = "I don't understand";
   }
+
   client.messages.create({
     to: req.body.From,
     from: '+14245238634',
