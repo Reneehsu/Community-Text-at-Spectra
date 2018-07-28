@@ -15,7 +15,7 @@ mongoose.connection.on('connected', function() {
 })
 mongoose.connect(process.env.MONGODB_URI)
 
-// var models = require('./models/model');
+var models = require('./models/model');
 // var User = models.User;
 // var Message = models.Message;
 // var Community = models.Community;
