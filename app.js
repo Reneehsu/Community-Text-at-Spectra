@@ -37,6 +37,12 @@ app.post('/handletext',function(req,res){
       if (req.body.Body.substr(0, 4) === 'JOIN'){
         var comm = req.body.Body.substr(4).split(' ');
         theUser.community = theUser.community.concat(comm);
+        content = "You just joined communities ... " ; 
+        client.messages.create({
+          to: req.body.From,
+          from: '+14245238634',
+          body: content,
+        });
       }
     } else {
       content = "Welcome to community text!! These are the communities you can join:...Reply with 'JOIN' plus the number(s) of the communities you want to join.";
