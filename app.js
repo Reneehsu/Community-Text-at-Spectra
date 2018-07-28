@@ -30,26 +30,47 @@ app.set('view engine', 'handlebars');
 //ROUTES GO HERE
 app.post('/handletext',function(req,res){
   res.writeHead(200,{'Content-Type': 'text/xml'});
-  console.log(req.body);
+//  console.log(req.body);
   var content;
-
-  if (req.body.Body === "Hello"){
-    content = "Welcome to community text!! What's one thing that you grateful today?";
-  } else {
-    content = "Awesome! Here's another person gratitude: ...";
-  }
-
-  //create a User with their phone number in the database
-  var newUser = new User({
-    phoneNumber: req.body.From
-  })
-
-  newUser.save(function(err) {
-    if (err) {
-      console.log("error saving user");
+  User.findOne({phoneNumber:req.body.From}, function(err, theUser){
+    if (theUser){
+      if (req.body.Body.substr(0, 4) === 'JOIN'){
+        var comm = req.body.Body.substr(4).split(' ');
+        theUser.community = theUser.community.concat(comm);
+      }
+    } else {
+      content = "Welcome to community text!! These are the communities you can join:...Reply with 'JOIN' plus the number(s) of the communities you want to join.";
+      var newUser = new User({
+        phoneNumber: req.body.From,
+        zipCode: req.body.FromZip
+      });
+      newUser.save(function(err) {
+        if (err) {
+          console.log("Error saving user");
+        }
+      });
     }
   })
 
+  //initial text to our app
+  // if (req.body.Body === "Hello"){
+  //   content = "Welcome to community text!! What's one thing that you grateful today?";
+  // } else {
+  //   content = "Awesome! Here's another person gratitude: ...";
+  // }
+  //
+  // //create a User with their phone number in the database
+  // var newUser = new User({
+  //   phoneNumber: req.body.From
+  // });
+  //
+  // newUser.save(function(err) {
+  //   if (err) {
+  //     console.log("Error saving user");
+  //   }
+  // });
+
+  //our response to the user
   client.messages.create({
     to: req.body.From,
     from: '+14245238634',

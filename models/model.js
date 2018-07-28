@@ -37,13 +37,18 @@ var communitySchema = {
   name: {
     type: String
   },
+  number: {
+    type: Number
+  }
   users: {
     type: Array
   },
-  responses: { //ownership
+  responses: { // {user: "user", response: "response"}
     type: Array
   }
 }
+
+//gratitude, health/fitness, cs, fluffies, memes, self-esteem booster
 
 var User = mongoose.model("User", userSchema);
 var Message = mongoose.model("Message", messageSchema);
