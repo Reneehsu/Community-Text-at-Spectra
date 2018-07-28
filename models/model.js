@@ -39,7 +39,7 @@ var communitySchema = {
   },
   number: {
     type: Number
-  }
+  },
   users: {
     type: Array
   },
