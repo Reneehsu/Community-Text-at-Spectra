@@ -15,10 +15,10 @@ mongoose.connection.on('connected', function() {
 })
 mongoose.connect(process.env.MONGODB_URI)
 
-var models = require('./models/model');
-var User = models.User;
-var Message = models.Message;
-var Community = models.Community;
+// var models = require('./models/model');
+// var User = models.User;
+// var Message = models.Message;
+// var Community = models.Community;
 
 //setup application configurations
 var app = express()
@@ -43,7 +43,7 @@ app.post('/handletext',function(req,res){
   // var newUser = new User({
   //   phoneNumber: req.body.From
   // })
-  // 
+  //
   // console.log("before save");
   //
   // newUser.save(function(err) {
