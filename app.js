@@ -27,12 +27,11 @@ app.post('/handletext',function(req,res){
   res.writeHead(200,{'Content-Type': 'text/xml'});
   console.log(req.body);
   var content;
-
-  if (req.body.Body === "Nihar"){
-    console.log("testing");
-    content = "Over the horizons";
-  } else{
-    content = "I don't understand";
+   
+  if (req.body.Body === "Hello"){
+    content = "Welcome to community text!! What's one thing that you grateful today?";
+  } else {
+    content = "Awesome! Here's another person gratitude: ...";
   }
 
   client.messages.create({
