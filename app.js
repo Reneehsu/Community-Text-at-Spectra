@@ -28,7 +28,7 @@ app.engine('handlebars', exphbs({defaultLayout: 'main'}));
 app.set('view engine', 'handlebars');
 
 var communityArr = ["Gratitude","Health/Fitness","Education","Empowerment"];
-for (var i=0; i<communityArr; i++){
+for (var i=0; i<communityArr.length; i++){
   var newCommunity = new Community({
     name: communityArr[i],
     number: i+1
