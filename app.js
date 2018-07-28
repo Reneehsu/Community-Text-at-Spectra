@@ -40,6 +40,11 @@ app.post('/handletext',function(req,res){
       }
     } else {
       content = "Welcome to community text!! These are the communities you can join:...Reply with 'JOIN' plus the number(s) of the communities you want to join.";
+      client.messages.create({
+        to: req.body.From,
+        from: '+14245238634',
+        body: content,
+      });
       var newUser = new User({
         phoneNumber: req.body.From,
         zipCode: req.body.FromZip
@@ -73,11 +78,11 @@ app.post('/handletext',function(req,res){
   // });
 
   //our response to the user
-  client.messages.create({
-    to: req.body.From,
-    from: '+14245238634',
-    body: content,
-  });
+  // client.messages.create({
+  //   to: req.body.From,
+  //   from: '+14245238634',
+  //   body: content,
+  // });
   console.log('after create');
   res.end();
 })
