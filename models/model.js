@@ -3,7 +3,7 @@ var mongoose = require('mongoose');
 console.log(process.env.MONGODB_URI);
 
 if (!process.env.MONGODB_URI){
-  console.log('Error: MONGODB_URI NOT SET';)
+  console.log('Error: MONGODB_URI NOT SET');
   process.exit(1);
 }
 
