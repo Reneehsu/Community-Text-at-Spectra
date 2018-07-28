@@ -15,6 +15,11 @@ mongoose.connection.on('connected', function() {
 })
 mongoose.connect(process.env.MONGODB_URI)
 
+var models = require('./models/model');
+var User = models.User;
+var Message = models.Message;
+var Community = models.Community;
+
 //setup application configurations
 var app = express()
 app.use(bodyParser.json())
@@ -27,12 +32,25 @@ app.post('/handletext',function(req,res){
   res.writeHead(200,{'Content-Type': 'text/xml'});
   console.log(req.body);
   var content;
-   
+
   if (req.body.Body === "Hello"){
     content = "Welcome to community text!! What's one thing that you grateful today?";
   } else {
     content = "Awesome! Here's another person gratitude: ...";
   }
+
+  //create a User with their phone number in the database
+  var newUser = new User({
+    phoneNumber: req.body.From
+  })
+
+  newUser.save(function(err) {
+    if (err) {
+      console.log("error saving user");
+    }
+  })
+
+  console.log("after save");
 
   client.messages.create({
     to: req.body.From,
