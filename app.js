@@ -15,12 +15,10 @@ mongoose.connection.on('connected', function() {
 })
 mongoose.connect(process.env.MONGODB_URI)
 
-console.log("in app: " + process.env.MONGODB_URI);
-
 var models = require('./models/model');
-// var User = models.User;
-// var Message = models.Message;
-// var Community = models.Community;
+var User = models.User;
+var Message = models.Message;
+var Community = models.Community;
 
 //setup application configurations
 var app = express()
@@ -42,19 +40,15 @@ app.post('/handletext',function(req,res){
   }
 
   //create a User with their phone number in the database
-  // var newUser = new User({
-  //   phoneNumber: req.body.From
-  // })
-  //
-  // console.log("before save");
-  //
-  // newUser.save(function(err) {
-  //   if (err) {
-  //     console.log("error saving user");
-  //   }
-  // })
+  var newUser = new User({
+    phoneNumber: req.body.From
+  })
 
-  console.log("after save");
+  newUser.save(function(err) {
+    if (err) {
+      console.log("error saving user");
+    }
+  })
 
   client.messages.create({
     to: req.body.From,
