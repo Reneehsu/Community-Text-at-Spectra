@@ -44,6 +44,8 @@ app.post('/handletext',function(req,res){
     phoneNumber: req.body.From
   })
 
+  console.log("before save");
+
   newUser.save(function(err) {
     if (err) {
       console.log("error saving user");
