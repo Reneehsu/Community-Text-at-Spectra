@@ -1,5 +1,5 @@
 //require necessary modules
-//test
+//test////
 var express = require('express')
 var mongoose = require('mongoose')
 var bodyParser = require('body-parser')
@@ -24,6 +24,7 @@ app.set('view engine', 'handlebars');
 
 //ROUTES GO HERE
 app.post('/handletext',function(req,res){
+  res.writeHead(200,{'Content-Type': 'text/xml'});
   console.log(req.body);
   var content;
 
