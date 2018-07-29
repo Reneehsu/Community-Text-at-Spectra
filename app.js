@@ -58,6 +58,10 @@ var textJob = new cronJob('* * * * *',function*(){
 })*/
 
 //ROUTES GO HERE
+app.get('/', function(req, res) {
+  res.send("GOT /");
+})
+
 app.post('/handletext',function(req,res){
   res.writeHead(200,{'Content-Type': 'text/xml'});
 //  console.log(req.body);
