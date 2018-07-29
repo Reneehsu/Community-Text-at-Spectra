@@ -59,7 +59,7 @@ app.post('/handletext',function(req,res){
               console.log(err);
             }
             theCommunity.users.concat(theUser);
-            content += comm[i].name;
+            content += theCommunity.name;
           });
           content += " ";
         }
