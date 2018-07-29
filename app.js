@@ -116,6 +116,11 @@ app.post('/handletext',function(req,res){
       } else {
         if (req.body.Body.substr(0,1) === "1"){
           Community.findOne({number:1},function(err,theCommunity){
+            theCommunity.responses.push({
+              user: req.body.From,
+              response: req.body.Body
+            })
+            theCommunity.save();
             content = theCommunity.responses[0].response;
             client.messages.create({
               to: req.body.From,
