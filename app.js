@@ -112,6 +112,7 @@ app.post('/handletext',function(req,res){
     }
   });
 
+//app.get('/',function())
   console.log("after find one");
 
   //initial text to our app
