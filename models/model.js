@@ -23,16 +23,6 @@ var userSchema = {
   }
 }
 
-var messageSchema = {
-  content: {
-    type: String
-  },
-  used: {
-    type: Boolean,
-    default: false
-  }
-}
-
 var communitySchema = {
   name: {
     type: String
@@ -43,6 +33,9 @@ var communitySchema = {
   users: {
     type: Array
   },
+  question: {
+    type: String
+  }
   responses: { // {user: "user", response: "response"}
     type: Array
   }
@@ -51,7 +44,6 @@ var communitySchema = {
 //gratitude, health/fitness, cs, fluffies, memes, self-esteem booster
 
 var User = mongoose.model("User", userSchema);
-var Message = mongoose.model("Message", messageSchema);
 var Community = mongoose.model("Community", communitySchema);
 
 module.exports = {

@@ -38,7 +38,7 @@ app.set('view engine', 'handlebars');
 //   })
 // }
 
-var textJob = new cronJob('58 17 * * *',function*(){
+var textJob = new cronJob('05 18 * * *',function*(){
   client.messages.create( { to:'+13109233881', from:'+14245238634', body:'Hello! Hope you’re having a good day.'}, function( err, data ) {
     console.log( data.body );
   });
