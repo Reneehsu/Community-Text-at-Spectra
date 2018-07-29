@@ -33,31 +33,31 @@ app.use(function(req, res, next) {
   next();
 });
 
-var communityArr = ["Gratitude","Health/Fitness","Education","Empowerment"];
-var questionArr = [ "What is one thing you are grateful for that happened today?",
-"What is one healthy choice you made today","What is one thing you learned today?",
-"What is one thing you are proud of today?"]
+// var communityArr = ["Gratitude","Health/Fitness","Education","Empowerment"];
+// var questionArr = [ "What is one thing you are grateful for that happened today?",
+// "What is one healthy choice you made today","What is one thing you learned today?",
+// "What is one thing you are proud of today?"]
+//
+// var responses = ["My family", "I made my 10,000 step count!", "All about iOS", "Completing my first hackathon"]
+//
+// for (var i=0; i<communityArr.length; i++){
+//   var newCommunity = new Community({
+//     name: communityArr[i],
+//     number: i+1,
+//     question: questionArr[i]
+//   }); //
+//   newCommunity.save(function(err){
+//     if (err) console.log('Error saving community');
+//   })
+// }
 
-var responses = ["My family", "I made my 10,000 step count!", "All about iOS", "Completing my first hackathon"]
-
-for (var i=0; i<communityArr.length; i++){
-  var newCommunity = new Community({
-    name: communityArr[i],
-    number: i+1,
-    question: questionArr[i]
-  }); //
-  newCommunity.save(function(err){
-    if (err) console.log('Error saving community');
-  })
-}
-
-var textJob = new cronJob('* * * * *',function*(){
-  var date = new Date();
-  console.log('cronJob ' + date);
-  client.messages.create( { to:'+13109233881', from:'+14245238634', body:'Hello! Hope you’re having a good day.'}, function( err, data ) {
-    console.log( data.body );
-  });
-})
+// var textJob = new cronJob('* * * * *',function*(){
+//   var date = new Date();
+//   console.log('cronJob ' + date);
+//   client.messages.create( { to:'+13109233881', from:'+14245238634', body:'Hello! Hope you’re having a good day.'}, function( err, data ) {
+//     console.log( data.body );
+//   });
+// })
 
 /*Community.findOne({question: ---}, function(err, theCommunity) {
   theCommunity.responses.push({
@@ -113,6 +113,12 @@ app.post('/handletext',function(req,res){
           from: '+14245238634',
           body: content,
         });
+      } else {
+        if (req.body.Body.substr(0,1) === 1){
+          Community.findOne({number:1},function(err,theCommunity){
+            theCommunity.responses[0].response;
+          })
+        }
       }
     } else {
       content = "Welcome to community text!! These are the communities you can join: 1. Gratitude 2. Health/Fitness 3. Education 4. Empowerment -- Reply with 'JOIN' plus the number(s) of the communities you want to join.";
