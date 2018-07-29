@@ -53,16 +53,14 @@ app.post('/handletext',function(req,res){
         content = "You just joined communities ";
         for (var i = 0; i < comm.length; i++) {
           var num = parseInt(comm[i]);
-          console.log('num',num);
           Community.findOne({number: num}, function(err, theCommunity) {
             if (err){
               console.log(err);
             }
             console.log("the community is " + theCommunity);
-            theCommunity.users.push(theUser);
-            console.log("just pushed the user");
+            theCommunity.users.push(theUser._id);
             content += theCommunity.name;
-            console.log("added to community list");
+            console.log("the community name is " + theCommunity.name);
             theCommunity.save(function(err) {
               if (err) {
                 console.log(err);
