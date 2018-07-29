@@ -26,27 +26,29 @@ app.use(bodyParser.urlencoded({extended:true}))
 app.engine('handlebars', exphbs({defaultLayout: 'main'}));
 app.set('view engine', 'handlebars');
 
-var communityArr = ["Gratitude","Health/Fitness","Education","Empowerment"];
-var questionArr = [ "What is one thing you are grateful for that happened today?",
-"What is one healthy choice you made today","What is one thing you learned today?",
-"What is one thing you are proud of today?"]
-
-for (var i=0; i<communityArr.length; i++){
-  var newCommunity = new Community({
-    name: communityArr[i],
-    number: i+1,
-    question: questionArr[i]
-  });
-  newCommunity.save(function(err){
-    if (err) console.log('Error saving community');
-  })
-}
+// var communityArr = ["Gratitude","Health/Fitness","Education","Empowerment"];
+// var questionArr = [ "What is one thing you are grateful for that happened today?",
+// "What is one healthy choice you made today","What is one thing you learned today?",
+// "What is one thing you are proud of today?"]
+//
+// for (var i=0; i<communityArr.length; i++){
+//   var newCommunity = new Community({
+//     name: communityArr[i],
+//     number: i+1,
+//     question: questionArr[i]
+//   });
+//   newCommunity.save(function(err){
+//     if (err) console.log('Error saving community');
+//   })
+// }
 
 var textJob = new cronJob('05 18 * * *',function*(){
   client.messages.create( { to:'+13109233881', from:'+14245238634', body:'Hello! Hope you’re having a good day.'}, function( err, data ) {
     console.log( data.body );
   });
 })
+
+
 
 //ROUTES GO HERE
 app.post('/handletext',function(req,res){
@@ -94,7 +96,7 @@ app.post('/handletext',function(req,res){
         });
       }
     } else {
-      content = "Welcome to community text!! These are the communities you can join:...Reply with 'JOIN' plus the number(s) of the communities you want to join.";
+      content = "Welcome to community text!! These are the communities you can join: 1. Gratitude 2. Health/Fitness 3. Education 4. Empowerment -- Reply with 'JOIN' plus the number(s) of the communities you want to join.";
       client.messages.create({
         to: req.body.From,
         from: '+14245238634',
@@ -112,8 +114,15 @@ app.post('/handletext',function(req,res){
     }
   });
 
-//app.get('/',function())
-  console.log("after find one");
+app.get('/community',function(req,res){
+  Community.find(function(err,communities){
+    if (err){
+      res.send(err);
+    } else {
+      res.json(communities);
+    }
+  })
+})
 
   //initial text to our app
   // if (req.body.Body === "Hello"){
@@ -139,7 +148,6 @@ app.post('/handletext',function(req,res){
   //   from: '+14245238634',
   //   body: content,
   // });
-  console.log('after create');
   res.end();
 })
 
