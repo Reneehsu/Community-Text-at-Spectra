@@ -17,7 +17,6 @@ mongoose.connect(process.env.MONGODB_URI)
 
 var models = require('./models/model');
 var User = models.User;
-var Message = models.Message;
 var Community = models.Community;
 
 //setup application configurations
@@ -27,16 +26,21 @@ app.use(bodyParser.urlencoded({extended:true}))
 app.engine('handlebars', exphbs({defaultLayout: 'main'}));
 app.set('view engine', 'handlebars');
 
-// var communityArr = ["Gratitude","Health/Fitness","Education","Empowerment"];
-// for (var i=0; i<communityArr.length; i++){
-//   var newCommunity = new Community({
-//     name: communityArr[i],
-//     number: i+1
-//   });
-//   newCommunity.save(function(err){
-//     if (err) console.log('Error saving community');
-//   })
-// }
+var communityArr = ["Gratitude","Health/Fitness","Education","Empowerment"];
+var questionArr = [ "What’s one thing you’re grateful for that happened today?",
+"What’s one healthy choice you made today","What’s one thing you learned today?",
+"What’s one thing you’re proud of today?"]
+
+for (var i=0; i<communityArr.length; i++){
+  var newCommunity = new Community({
+    name: communityArr[i],
+    number: i+1,
+    question: questionArr[i]
+  });
+  newCommunity.save(function(err){
+    if (err) console.log('Error saving community');
+  })
+}
 
 var textJob = new cronJob('05 18 * * *',function*(){
   client.messages.create( { to:'+13109233881', from:'+14245238634', body:'Hello! Hope you’re having a good day.'}, function( err, data ) {

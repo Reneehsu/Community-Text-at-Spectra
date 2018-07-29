@@ -48,6 +48,5 @@ var Community = mongoose.model("Community", communitySchema);
 
 module.exports = {
   User: User,
-  Message: Message,
   Community: Community
 }
