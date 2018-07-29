@@ -45,7 +45,7 @@ for (var i=0; i<communityArr.length; i++){
     name: communityArr[i],
     number: i+1,
     question: questionArr[i]
-  });
+  }); //
   newCommunity.save(function(err){
     if (err) console.log('Error saving community');
   })
