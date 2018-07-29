@@ -46,6 +46,7 @@ app.post('/handletext',function(req,res){
   User.findOne({phoneNumber:req.body.From}, function(err, theUser){
     if (theUser){
       if (req.body.Body.substr(0, 4) === 'JOIN'){
+        console.log("body " + req.body.Body);
         var comm = req.body.Body.split(' ').shift();
         console.log(comm);
         theUser.community = theUser.community.concat(comm);
