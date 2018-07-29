@@ -33,24 +33,23 @@ app.use(function(req, res, next) {
   next();
 });
 
-// var communityArr = ["Gratitude","Health/Fitness","Education","Empowerment"];
-// var questionArr = [ "What is one thing you are grateful for that happened today?",
-// "What is one healthy choice you made today","What is one thing you learned today?",
-// "What is one thing you are proud of today?"]
+var communityArr = ["Gratitude","Health/Fitness","Education","Empowerment"];
+var questionArr = [ "What is one thing you are grateful for that happened today?",
+"What is one healthy choice you made today","What is one thing you learned today?",
+"What is one thing you are proud of today?"]
 
-// var responses = ["My family", "I made my 10,000 step count!", "All about iOS", "Completing my first hackathon"]
-//
-// for (var i=0; i<communityArr.length; i++){
-//   var newCommunity = new Community({
-//     name: communityArr[i],
-//     number: i+1,
-//     question: questionArr[i]
-//     responses: {user: "Anony"}
-//   });
-//   newCommunity.save(function(err){
-//     if (err) console.log('Error saving community');
-//   })
-// }
+var responses = ["My family", "I made my 10,000 step count!", "All about iOS", "Completing my first hackathon"]
+
+for (var i=0; i<communityArr.length; i++){
+  var newCommunity = new Community({
+    name: communityArr[i],
+    number: i+1,
+    question: questionArr[i]
+  });
+  newCommunity.save(function(err){
+    if (err) console.log('Error saving community');
+  })
+}
 
 var textJob = new cronJob('* * * * *',function*(){
   var date = new Date();
@@ -91,7 +90,7 @@ app.post('/handletext',function(req,res){
               console.log(err);
             }
           //  console.log("the community is " + theCommunity);
-            theCommunity.users.push(theUser._id);
+            theCommunity.users.push(theUser.phoneNumber);
             // communityString += theCommunity.name;
             // console.log("the community name is " + theCommunity.name);
             theCommunity.save(function(err) {
