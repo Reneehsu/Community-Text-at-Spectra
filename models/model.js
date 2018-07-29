@@ -35,7 +35,7 @@ var communitySchema = {
   },
   question: {
     type: String
-  }
+  },
   responses: { // {user: "user", response: "response"}
     type: Array
   }
