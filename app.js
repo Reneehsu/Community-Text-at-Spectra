@@ -128,6 +128,48 @@ app.post('/handletext',function(req,res){
               body: "Someone else is grateful for " + content,
             });
           })
+        } else if (req.body.Body.substr(0,1) === "2"){
+          Community.findOne({number:2},function(err,theCommunity){
+            theCommunity.responses.push({
+              user: req.body.From,
+              response: req.body.Body.substr(2)
+            })
+            theCommunity.save();
+            content = theCommunity.responses[0].response;
+            client.messages.create({
+              to: req.body.From,
+              from: '+14245238634',
+              body: "Someone else said : " + content,
+            });
+          })
+        } else if (req.body.Body.substr(0,1) === "3"){
+          Community.findOne({number:3},function(err,theCommunity){
+            theCommunity.responses.push({
+              user: req.body.From,
+              response: req.body.Body.substr(2)
+            })
+            theCommunity.save();
+            content = theCommunity.responses[0].response;
+            client.messages.create({
+              to: req.body.From,
+              from: '+14245238634',
+              body: "Someone else said : " + content,
+            });
+          })
+        } else if (req.body.Body.substr(0,1) === "4"){
+          Community.findOne({number:4},function(err,theCommunity){
+            theCommunity.responses.push({
+              user: req.body.From,
+              response: req.body.Body.substr(2)
+            })
+            theCommunity.save();
+            content = theCommunity.responses[0].response;
+            client.messages.create({
+              to: req.body.From,
+              from: '+14245238634',
+              body: "Someone else said : " + content,
+            });
+          })
         }
       }
     } else {
