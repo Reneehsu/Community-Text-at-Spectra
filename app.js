@@ -116,7 +116,12 @@ app.post('/handletext',function(req,res){
       } else {
         if (req.body.Body.substr(0,1) === 1){
           Community.findOne({number:1},function(err,theCommunity){
-            theCommunity.responses[0].response;
+            content = theCommunity.responses[0].response;
+            client.messages.create({
+              to: req.body.From,
+              from: '+14245238634',
+              body: content,
+            });
           })
         }
       }
