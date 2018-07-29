@@ -50,7 +50,7 @@ app.post('/handletext',function(req,res){
         var comm = req.body.Body.substr(5).split(' ');
         console.log(comm);
         theUser.community = theUser.community.concat(comm);
-        content = "You just joined communities " ;
+        content = "You just joined communities ";
         for (var i = 0; i < comm.length; i++) {
           var num = parseInt(comm[i]);
           console.log('num',num);
@@ -58,11 +58,25 @@ app.post('/handletext',function(req,res){
             if (err){
               console.log(err);
             }
-            theCommunity.users.concat(theUser);
+            console.log("the community is " + theCommunity);
+            theCommunity.users.push(theUser);
+            console.log("just pushed the user");
             content += theCommunity.name;
+            console.log("added to community list");
+            theCommunity.save(function(err) {
+              if (err) {
+                console.log(err);
+              }
+            })
           });
           content += " ";
         }
+
+        theUser.save(function(err) {
+          if (err) {
+            console.log(err);
+          }
+        });
 
         client.messages.create({
           to: req.body.From,
