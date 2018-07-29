@@ -118,14 +118,14 @@ app.post('/handletext',function(req,res){
           Community.findOne({number:1},function(err,theCommunity){
             theCommunity.responses.push({
               user: req.body.From,
-              response: req.body.Body
+              response: req.body.Body.substr(2)
             })
             theCommunity.save();
             content = theCommunity.responses[0].response;
             client.messages.create({
               to: req.body.From,
               from: '+14245238634',
-              body: content,
+              body: "Someone else is grateful for " + content,
             });
           })
         }
