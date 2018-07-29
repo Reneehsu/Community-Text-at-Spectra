@@ -121,7 +121,8 @@ app.post('/handletext',function(req,res){
     }
   });
 
-app.get('/community',function(req,res){
+app.get('/community',function(req, res){
+  res.send('Hello');
   Community.find(function(err,communities){
     if (err){
       res.send(err);
