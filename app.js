@@ -50,17 +50,18 @@ app.post('/handletext',function(req,res){
         var comm = req.body.Body.substr(5).split(' ');
         console.log(comm);
         theUser.community = theUser.community.concat(comm);
-        content = "You just joined communities ";
+        content = "You just joined communities " + req.body.Body.substr(5);
+        var communityString = '';
         for (var i = 0; i < comm.length; i++) {
           var num = parseInt(comm[i]);
           Community.findOne({number: num}, function(err, theCommunity) {
             if (err){
               console.log(err);
             }
-            console.log("the community is " + theCommunity);
+          //  console.log("the community is " + theCommunity);
             theCommunity.users.push(theUser._id);
-            content += theCommunity.name;
-            console.log("the community name is " + theCommunity.name);
+            // communityString += theCommunity.name;
+            // console.log("the community name is " + theCommunity.name);
             theCommunity.save(function(err) {
               if (err) {
                 console.log(err);
