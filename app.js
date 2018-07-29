@@ -114,7 +114,7 @@ app.post('/handletext',function(req,res){
           body: content,
         });
       } else {
-        if (req.body.Body.substr(0,1) === 1){
+        if (req.body.Body.substr(0,1) === "1"){
           Community.findOne({number:1},function(err,theCommunity){
             content = theCommunity.responses[0].response;
             client.messages.create({
