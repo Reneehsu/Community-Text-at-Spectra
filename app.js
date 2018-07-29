@@ -4,7 +4,8 @@ var express = require('express')
 var mongoose = require('mongoose')
 var bodyParser = require('body-parser')
 var exphbs = require('express-handlebars');
-var client = require('twilio')(process.env.TWILIO_SID, process.env.TWILIO_AUTH_TOKEN), cronJob = require('cron').CronJob;
+var client = require('twilio')(process.env.TWILIO_SID, process.env.TWILIO_AUTH_TOKEN);
+var cronJob = require('cron').CronJob;
 
 //setup mongoose connection
 mongoose.connection.on('error', function() {
@@ -42,13 +43,19 @@ app.set('view engine', 'handlebars');
 //   })
 // }
 
-var textJob = new cronJob('05 18 * * *',function*(){
+var textJob = new cronJob('* * * * *',function*(){
+  var date = new Date();
+  console.log('cronJob ' + date);
   client.messages.create( { to:'+13109233881', from:'+14245238634', body:'Hello! Hope you’re having a good day.'}, function( err, data ) {
     console.log( data.body );
   });
 })
 
-
+/*Community.findOne({question: ---}, function(err, theCommunity) {
+  theCommunity.responses.push({
+    user:
+  })
+})*/
 
 //ROUTES GO HERE
 app.post('/handletext',function(req,res){
