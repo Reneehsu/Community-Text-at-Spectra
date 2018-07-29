@@ -27,16 +27,16 @@ app.use(bodyParser.urlencoded({extended:true}))
 app.engine('handlebars', exphbs({defaultLayout: 'main'}));
 app.set('view engine', 'handlebars');
 
-var communityArr = ["Gratitude","Health/Fitness","Education","Empowerment"];
-for (var i=0; i<communityArr.length; i++){
-  var newCommunity = new Community({
-    name: communityArr[i],
-    number: i+1
-  });
-  newCommunity.save(function(err){
-    if (err) console.log('Error saving community');
-  })
-}
+// var communityArr = ["Gratitude","Health/Fitness","Education","Empowerment"];
+// for (var i=0; i<communityArr.length; i++){
+//   var newCommunity = new Community({
+//     name: communityArr[i],
+//     number: i+1
+//   });
+//   newCommunity.save(function(err){
+//     if (err) console.log('Error saving community');
+//   })
+// }
 
 //ROUTES GO HERE
 app.post('/handletext',function(req,res){
@@ -47,7 +47,7 @@ app.post('/handletext',function(req,res){
     if (theUser){
       if (req.body.Body.substr(0, 4) === 'JOIN'){
         console.log("body " + req.body.Body);
-        var comm = req.body.Body.split(' ').shift();
+        var comm = req.body.Body.substr(4).split(' ');
         console.log(comm);
         theUser.community = theUser.community.concat(comm);
         content = "You just joined communities " ;
