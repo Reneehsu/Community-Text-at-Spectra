@@ -52,7 +52,12 @@ app.post('/handletext',function(req,res){
         theUser.community = theUser.community.concat(comm);
         content = "You just joined communities " ;
         for (var i = 0; i < comm.length; i++) {
-          Community.findOne({number: parseInt(comm[i+1])}, function(err, theCommunity) {
+          var num = parseInt(comm[i]);
+          console.log('num',num);
+          Community.findOne({number: num}, function(err, theCommunity) {
+            if (err){
+              console.log(err);
+            }
             theCommunity.users.concat(theUser);
             content += comm[i].name;
           });
