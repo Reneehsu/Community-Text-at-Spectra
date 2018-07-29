@@ -27,9 +27,9 @@ app.engine('handlebars', exphbs({defaultLayout: 'main'}));
 app.set('view engine', 'handlebars');
 
 var communityArr = ["Gratitude","Health/Fitness","Education","Empowerment"];
-var questionArr = [ "What’s one thing you’re grateful for that happened today?",
-"What’s one healthy choice you made today","What’s one thing you learned today?",
-"What’s one thing you’re proud of today?"]
+var questionArr = [ "What is one thing you are grateful for that happened today?",
+"What is one healthy choice you made today","What is one thing you learned today?",
+"What is one thing you are proud of today?"]
 
 for (var i=0; i<communityArr.length; i++){
   var newCommunity = new Community({
