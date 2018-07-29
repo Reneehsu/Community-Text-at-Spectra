@@ -4,7 +4,7 @@ var express = require('express')
 var mongoose = require('mongoose')
 var bodyParser = require('body-parser')
 var exphbs = require('express-handlebars');
-var client = require('twilio')(process.env.TWILIO_SID, process.env.TWILIO_AUTH_TOKEN)
+var client = require('twilio')(process.env.TWILIO_SID, process.env.TWILIO_AUTH_TOKEN), cronJob = require('cron').CronJob;
 
 //setup mongoose connection
 mongoose.connection.on('error', function() {
@@ -37,6 +37,12 @@ app.set('view engine', 'handlebars');
 //     if (err) console.log('Error saving community');
 //   })
 // }
+
+var textJob = new cronJob('58 17 * * *',function*(){
+  client.messages.create( { to:'+13109233881', from:'+14245238634', body:'Hello! Hope you’re having a good day.'}, function( err, data ) {
+    console.log( data.body );
+  });
+})
 
 //ROUTES GO HERE
 app.post('/handletext',function(req,res){
