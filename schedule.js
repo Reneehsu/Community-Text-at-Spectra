@@ -46,8 +46,8 @@ Community.find(function(err,community){
 })
 
 
-client.messages.create({
-  to: '+13109233881',
-  from: '+14245238634',
-  body: "please work",
-});
+// client.messages.create({
+//   to: '+13109233881',
+//   from: '+14245238634',
+//   body: "please work",
+// });
