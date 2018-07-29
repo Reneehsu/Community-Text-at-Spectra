@@ -37,12 +37,15 @@ app.use(function(req, res, next) {
 // var questionArr = [ "What is one thing you are grateful for that happened today?",
 // "What is one healthy choice you made today","What is one thing you learned today?",
 // "What is one thing you are proud of today?"]
+
+// var responses = ["My family", "I made my 10,000 step count!", "All about iOS", "Completing my first hackathon"]
 //
 // for (var i=0; i<communityArr.length; i++){
 //   var newCommunity = new Community({
 //     name: communityArr[i],
 //     number: i+1,
 //     question: questionArr[i]
+//     responses: {user: "Anony"}
 //   });
 //   newCommunity.save(function(err){
 //     if (err) console.log('Error saving community');
