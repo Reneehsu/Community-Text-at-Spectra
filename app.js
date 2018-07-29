@@ -139,7 +139,7 @@ app.post('/handletext',function(req,res){
             client.messages.create({
               to: req.body.From,
               from: '+14245238634',
-              body: "Someone else said : " + content,
+              body: "Someone else said : " + content + ' View more: https://communitytext.herokuapp.com/',
             });
           })
         } else if (req.body.Body.substr(0,1) === "3"){
@@ -153,7 +153,7 @@ app.post('/handletext',function(req,res){
             client.messages.create({
               to: req.body.From,
               from: '+14245238634',
-              body: "Someone else said : " + content,
+              body: "Someone else said : " + content + ' View more: https://communitytext.herokuapp.com/',
             });
           })
         } else if (req.body.Body.substr(0,1) === "4"){
@@ -167,7 +167,7 @@ app.post('/handletext',function(req,res){
             client.messages.create({
               to: req.body.From,
               from: '+14245238634',
-              body: "Someone else said : " + content,
+              body: "Someone else said : " + content + ' View more: https://communitytext.herokuapp.com/',
             });
           })
         }
