@@ -125,7 +125,7 @@ app.post('/handletext',function(req,res){
             client.messages.create({
               to: req.body.From,
               from: '+14245238634',
-              body: "Someone else is grateful for " + content,
+              body: "Someone else is grateful for " + content + 'View more: https://dashboard.heroku.com/apps/communitytext',
             });
           })
         } else if (req.body.Body.substr(0,1) === "2"){
