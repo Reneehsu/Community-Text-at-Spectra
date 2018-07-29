@@ -125,17 +125,6 @@ app.post('/handletext',function(req,res){
     }
   });
 
-app.get('/community',function(req, res){
-  res.send('Hello');
-  Community.find(function(err,communities){
-    if (err){
-      res.send(err);
-    } else {
-      res.json(communities);
-    }
-  })
-})
-
   //initial text to our app
   // if (req.body.Body === "Hello"){
   //   content = "Welcome to community text!! What's one thing that you grateful today?";
@@ -161,6 +150,17 @@ app.get('/community',function(req, res){
   //   body: content,
   // });
   res.end();
+});
+
+app.get('/community',function(req, res){
+  res.send('Hello');
+  Community.find(function(err,communities){
+    if (err){
+      res.send(err);
+    } else {
+      res.json(communities);
+    }
+  })
 })
 
 //add a route that will respond to post requests sent by Twilio via
