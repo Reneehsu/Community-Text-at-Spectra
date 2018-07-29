@@ -47,7 +47,7 @@ app.post('/handletext',function(req,res){
     if (theUser){
       if (req.body.Body.substr(0, 4) === 'JOIN'){
         console.log("body " + req.body.Body);
-        var comm = req.body.Body.substr(4).split(' ');
+        var comm = req.body.Body.substr(5).split(' ');
         console.log(comm);
         theUser.community = theUser.community.concat(comm);
         content = "You just joined communities " ;
