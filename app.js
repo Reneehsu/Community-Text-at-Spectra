@@ -27,6 +27,12 @@ app.use(bodyParser.urlencoded({extended:true}))
 app.engine('handlebars', exphbs({defaultLayout: 'main'}));
 app.set('view engine', 'handlebars');
 
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
+
 // var communityArr = ["Gratitude","Health/Fitness","Education","Empowerment"];
 // var questionArr = [ "What is one thing you are grateful for that happened today?",
 // "What is one healthy choice you made today","What is one thing you learned today?",
